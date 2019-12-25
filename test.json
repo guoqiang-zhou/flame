@@ -1,0 +1,15 @@
+{
+   "Branch" : "Master",
+
+   "Tag" : "",
+
+   "BuildCommand" : "./gradlew clean build lint",
+
+   "MappingFile" : "app/build/outputs/apk/release/mapping.txt",
+
+   "Archives_debug" : "app/build/outputs/apk/debug/*.apk",
+
+   "Archives_release" : "app/build/outputs/apk/release/*.apk",
+
+   "Sonarfile" : "false"
+}

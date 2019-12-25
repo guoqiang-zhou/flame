@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.ubtrobot.light"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('./goldpig.jks')
+            storePassword 'goldpig2018'
+            keyAlias 'goldPig'
+            keyPassword 'goldpig2018'
+        }
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    implementation 'com.ubtrobot.speech:voice-service-message:0.1.0-SNAPSHOT'
+    implementation 'com.ubtrobot.framework:light-sal:0.7.1-SNAPSHOT'
+    implementation 'com.ubtrobot.master:gson-marshaller:0.7.1-SNAPSHOT'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 30, 'seconds'
+}
